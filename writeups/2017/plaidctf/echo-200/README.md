@@ -2,7 +2,7 @@
 
 | Category | Points | Solves |
 | -------- |--------| -------|
-| Web      | 200    | 300    |
+| Web      | 200    | 132    |
 
 > If you hear enough, you may hear the whispers of a key... 
 > If you see [app.py](echo_57f0dd57961caae2fd8b3c080f0e125b.py) well enough, you will notice the UI sucks... 
@@ -49,6 +49,7 @@ The process_flag function takes the original flag and stores it in the input fil
 
             # 64999 bytes with k states +
             # 1 byte of a flag char xored with the c state
+            # final size = 65000 * # of chars on the flag
             f.write(towrite + chr(c ^ ord(x)))
     return
 ```
@@ -76,7 +77,7 @@ The [run.py](run.py) application inside the Docker container is vulnerable to re
             call(["sh","-c", "espeak " + " -w " + OUTPUT_PATH + str(i) + ".wav \"" + l + "\""])
 ```
 
-Now we have two options to solve the problem:
+We have now two options to solve the problem:
 
 1. Get the entire flag file using the espeak command, and the automate the data extraction from the wav file.
 2. Decrypt the flag file directly on the server and get it as an audio file.
