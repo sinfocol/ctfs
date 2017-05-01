@@ -1,6 +1,6 @@
 # DEF CON CTF QUALIFIERS 2017 - Crackme 2000
 
-We are given with multiple binary files that receive a code from stdin and show a string based on whether the code was correct or not:
+We were given multiple binary files that receive a code from stdin and show a string based on whether the code was correct or not:
 
 ```bash
 $ ./01dd90c3b7d9a36227a5ddc96c7887acbcb973744c1971eaa6da6cccc6c3e261 
@@ -12,7 +12,7 @@ enter code:
 sum is 12
 ```
 
-You can download a [some samples](crackmes-2000-samples.zip) of the provided files, solution here includes:
+You can download [some samples](crackmes-2000-samples.zip) of the provided files, solution here includes:
 * magic
 * sorcery
 * alchemy
@@ -36,7 +36,7 @@ This may not be an advanced solution but it was one of the fastest way that came
 
 ### magic
 
-First binary follows this pattern for string comparison:
+First binary followed this pattern for string comparison:
 
 ```asm
 cmp rdi,0xhh
@@ -59,7 +59,7 @@ cmp rdi,0xhh
  96e:	c3                   	ret
 ```
 
-We use objdump, grep, and xxd to get the solutions for the magic binaries:
+We used objdump, grep, and xxd to get the solutions for the magic binaries:
 
 ```
 objdump -M intel -d $file |
@@ -75,7 +75,7 @@ $ for file in $(ls);do answer=$(objdump -M intel -d $file | grep -P "cmp\s+rdi" 
 '0c029d126ab043c1b5137f8ddece16af67857743cc1a8e0d496181f002861c04': 'han anyone -- shir',
 ```
 
-We can send now the answers to the server using [magic.py](magic.py):
+We sent the answers to the server using [magic.py](magic.py):
 
 ```
 $ python magic.py
@@ -89,7 +89,7 @@ FLAG:  The flag is: a color map of the sun sokemsUbif
 
 ### sorcery
 
-Sorcery binaries follow a similar pattern with a slight modification at the end:
+Sorcery binaries followed a similar pattern with a slight modification at the end:
 
 ```asm
 3hhh: cmp [ac]l,0xhh
@@ -127,7 +127,7 @@ $ for file in $(ls);do answer=$(objdump -M intel -d $file | grep -P " 3\w{3}.*cm
 '0a4def1cae72a724e81042f7565182ca70b7ffb2de9314bd6380b03c42e9bb84': 'elt his ',
 ```
 
-Using [sorcery.py](sorcery.py) we can get the flag for the problem:
+Using [sorcery.py](sorcery.py) we could get the flag for the problem:
 
 ```
 $ python sorcerer.py
@@ -163,7 +163,7 @@ Following the same reasoning we can find the pattern for this binary which is si
   40f5a8:	0f 85 c5 07 00 00    	jne    40fd73 <_start@@Base+0x2703>
 ```
 
-The command for this problem is:
+The command for this problem was:
 
 ```
 objdump -M intel -d $file |
@@ -193,7 +193,7 @@ FLAG:  The flag is: end of the world sun clyigujheo
 
 ### witchcraft
 
-Witchcraft does not follow a so simple pattern as seen before, instead it uses additions and substractions to calculate a proper value for each character, however the pattern was:
+Witchcraft did not follow a so simple pattern as seen before, instead it used additions and substractions to calculate a proper value for each character, however the pattern was:
 
 ```asm
 add rdi,0xhh
