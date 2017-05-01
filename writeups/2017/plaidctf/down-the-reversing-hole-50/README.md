@@ -10,7 +10,7 @@
 
 ## Solution
 
-This is a miscellaneous challenge involving some reversing, we load the binary as an MS-DOS executable and then we see two strings being xored:
+This is a misc challenge with some reversing. We noticed the DOS code section of the binary was not an standard one, so we load the binary as an MS-DOS executable on the disassembler and then we see the xor instruction being applied over two strings, that would be a good indicator of an incoming flag:
 
 ```
 seg000:0000                 public start
