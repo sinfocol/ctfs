@@ -218,7 +218,7 @@ cmp rdi,0xhh
   402254:	c3                   	ret 
 ```
 
-The [parser.py](parser.py) script was used to calculate the initial state of each character:
+[parser.py](parser.py) script was used to calculate the initial state of each character:
 
 ```python
 import sys
